@@ -50,9 +50,8 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.score) EditText score;
     @BindView(R.id.coordinator) CoordinatorLayout coordinator;
 
-    int twodee[][] = new int[9][9];
+    private int twodee[][] = new int[9][9];
 
-    private FirebaseAuth auth;
     private Boolean toggle = true;
     private Gson gson;
 
@@ -65,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        auth = FirebaseAuth.getInstance();
+        FirebaseAuth auth = FirebaseAuth.getInstance();
 
         auth.signInAnonymously().addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -132,7 +131,6 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void saveFile(String array, String name) {
-        String filename = name;
         name += ".json";
         File file = new File(getApplicationContext().getFilesDir(), name);
         FileOutputStream outputStream;
