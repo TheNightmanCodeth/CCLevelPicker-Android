@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "757359657472",
+    "firebase_url": "https://project-1677111012594498785.firebaseio.com",
+    "project_id": "project-1677111012594498785",
+    "storage_bucket": "project-1677111012594498785.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:757359657472:android:d3ffc4b231db3b02",
+        "android_client_info": {
+          "package_name": "com.diragi.leveldesigner"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "757359657472-npmscp0t810dtb2515hegaf8uie1of81.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBfLqYNXeC_xzVf0mxWPthuvFkUuAnoGYw"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
