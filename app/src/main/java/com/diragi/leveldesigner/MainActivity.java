@@ -4,6 +4,7 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -22,11 +23,9 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 
 import java.io.File;
 import java.io.FileOutputStream;
-import java.net.URI;
 import java.util.List;
 
 import butterknife.BindView;
@@ -49,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.title) EditText title;
     @BindView(R.id.turns) EditText turns;
     @BindView(R.id.score) EditText score;
+    @BindView(R.id.coordinator) CoordinatorLayout coordinator;
 
     int twodee[][] = new int[9][9];
 
@@ -78,7 +78,6 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 make2D();
             }
         });
@@ -160,6 +159,7 @@ public class MainActivity extends AppCompatActivity {
         FirebaseStorage storage = FirebaseStorage.getInstance();
         StorageReference storageReference = storage.getReferenceFromUrl("gs://project-1677111012594498785.appspot.com");
         storageReference.child(name).putFile(Uri.fromFile(file));
+        makeSnack("Successfully pushed '" +name +"' to server");
     }
 
     @Override
@@ -184,5 +184,9 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void makeSnack(String message) {
+        Snackbar.make(coordinator, message, Snackbar.LENGTH_LONG).show();
     }
 }
