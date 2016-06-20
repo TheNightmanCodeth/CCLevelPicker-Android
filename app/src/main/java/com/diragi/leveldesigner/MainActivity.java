@@ -79,7 +79,11 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                make2D();
+                if (title.getText().toString().equals("")||score.getText().toString().equals("")||turns.getText().toString().equals("")) {
+                    makeSnack("One or more fields were left blank");
+                } else {
+                    make2D();
+                }
             }
         });
     }
