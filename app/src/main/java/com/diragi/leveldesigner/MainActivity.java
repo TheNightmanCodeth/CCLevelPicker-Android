@@ -71,6 +71,8 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         Log.d("TAG", "logged in anonymously" +task.isSuccessful());
+                        if (task.isSuccessful()) makeSnack("Logged in anonymously");
+                        if (!task.isSuccessful()) makeSnack("Error logging in. Restart LevelDesigner to try again");
                     }
                 });
 
@@ -159,7 +161,29 @@ public class MainActivity extends AppCompatActivity {
         FirebaseStorage storage = FirebaseStorage.getInstance();
         StorageReference storageReference = storage.getReferenceFromUrl("gs://project-1677111012594498785.appspot.com");
         storageReference.child(name).putFile(Uri.fromFile(file));
-        makeSnack("Successfully pushed '" +name +"' to server");
+        Snackbar pushedMaybeReset = Snackbar.make(coordinator, name +" has been pushed to server", Snackbar.LENGTH_LONG).setAction("CLEAR ALL", new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                clearAll();
+            }
+        });
+        pushedMaybeReset.show();
+    }
+
+    private void clearAll() {
+        title.setText("");
+        title.setHint("level_");
+        score.setText("");
+        score.setHint("Score");
+        turns.setText("");
+        turns.setHint("Turns");
+        clearGrid();
+    }
+
+    private void clearGrid() {
+        for (int i = 0; i < 81; i++) {
+            boxes.get(i).setChecked(false);
+        }
     }
 
     @Override
